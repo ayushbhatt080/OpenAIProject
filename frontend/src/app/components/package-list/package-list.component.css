@@ -1,0 +1,16 @@
+.table-actions button {
+  background-color: #1e88e5;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-right: 4px;
+}
+
+.table-actions button:last-child {
+  background-color: #d32f2f;
+}
+
+.button-row {
+  margin-top: 16px;
+}

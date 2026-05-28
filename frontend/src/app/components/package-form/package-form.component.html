@@ -1,0 +1,39 @@
+<div class="card">
+  <h2>{{ packageId ? 'Edit Travel Package' : 'New Travel Package' }}</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+
+  <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+    <div class="grid">
+      <div>
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" />
+        <small class="error" *ngIf="packageForm.get('title')?.touched && packageForm.get('title')?.invalid">Title is required.</small>
+      </div>
+      <div>
+        <label for="destination">Destination</label>
+        <input id="destination" formControlName="destination" />
+        <small class="error" *ngIf="packageForm.get('destination')?.touched && packageForm.get('destination')?.invalid">Destination is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="price">Price</label>
+      <input id="price" type="number" formControlName="price" />
+      <small class="error" *ngIf="packageForm.get('price')?.touched && packageForm.get('price')?.invalid">
+        Price is required and must be 0 or greater.
+      </small>
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" rows="5" formControlName="description"></textarea>
+      <small class="error" *ngIf="packageForm.get('description')?.touched && packageForm.get('description')?.invalid">Description is required.</small>
+    </div>
+
+    <div class="button-row">
+      <button type="submit" [disabled]="loading">Save</button>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

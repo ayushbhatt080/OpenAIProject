@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="field-row" style="justify-content: space-between; align-items: center;">
+    <div>
+      <h2>Travel Packages</h2>
+      <p *ngIf="packages.length === 0 && !loading">No travel packages found.</p>
+    </div>
+    <button (click)="createPackage()">New Package</button>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+  <div *ngIf="loading" class="alert alert-info">Loading packages...</div>
+
+  <table *ngIf="packages.length > 0" class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Destination</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pkg of packages">
+        <td>{{ pkg.title }}</td>
+        <td>{{ pkg.destination }}</td>
+        <td>{{ pkg.price | currency:'USD' }}</td>
+        <td>{{ pkg.description }}</td>
+        <td class="table-actions">
+          <button (click)="editPackage(pkg)">Edit</button>
+          <button (click)="deletePackage(pkg)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
