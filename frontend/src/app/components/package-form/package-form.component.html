@@ -1,9 +1,9 @@
-<div class="card">
-  <h2>{{ packageId ? 'Edit Travel Package' : 'New Travel Package' }}</h2>
+<div class="card form-card">
+  <h2>{{ packageId ? '✏️ Edit Travel Package' : '➕ New Travel Package' }}</h2>
 
   <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
 
-  <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="packageForm" (ngSubmit)="onSubmit()" class="package-form">
     <div class="grid">
       <div>
         <label for="title">Title</label>
@@ -18,8 +18,11 @@
     </div>
 
     <div>
-      <label for="price">Price</label>
-      <input id="price" type="number" formControlName="price" />
+      <label for="price">Price (in ₹)</label>
+      <div class="price-input-group">
+        <span class="currency-symbol">₹</span>
+        <input id="price" type="number" formControlName="price" placeholder="Enter price in rupees" />
+      </div>
       <small class="error" *ngIf="packageForm.get('price')?.touched && packageForm.get('price')?.invalid">
         Price is required and must be 0 or greater.
       </small>

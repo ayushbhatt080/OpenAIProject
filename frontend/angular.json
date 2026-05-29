@@ -69,5 +69,7 @@
       }
     }
   },
-  "defaultProject": "travel-tourism-frontend"
+  "cli": {
+    "analytics": false
+  }
 }

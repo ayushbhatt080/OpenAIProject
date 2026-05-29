@@ -1,10 +1,10 @@
 <div class="card">
-  <div class="field-row" style="justify-content: space-between; align-items: center;">
-    <div>
-      <h2>Travel Packages</h2>
-      <p *ngIf="packages.length === 0 && !loading">No travel packages found.</p>
+  <div class="header-section">
+    <div class="header-title">
+      <h2>🌍 Travel Packages</h2>
+      <p *ngIf="packages.length === 0 && !loading" class="no-data">No travel packages found.</p>
     </div>
-    <button (click)="createPackage()">New Package</button>
+    <button class="btn-primary" (click)="createPackage()">+ New Package</button>
   </div>
 
   <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
@@ -22,9 +22,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let pkg of packages">
-        <td>{{ pkg.title }}</td>
+        <td><strong>{{ pkg.title }}</strong></td>
         <td>{{ pkg.destination }}</td>
-        <td>{{ pkg.price | currency:'USD' }}</td>
+        <td><span class="price-badge">₹{{ pkg.price | number:'1.0-2' }}</span></td>
         <td>{{ pkg.description }}</td>
         <td class="table-actions">
           <button (click)="editPackage(pkg)">Edit</button>
